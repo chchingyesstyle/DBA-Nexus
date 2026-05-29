@@ -24,6 +24,11 @@ export function Sidebar() {
   return (
     <aside className="w-56 min-h-screen bg-white border-r border-gray-200 flex flex-col py-4 px-3">
       <div className="mb-6 px-2">
+        <img
+          src="https://s3-eu-west-1.amazonaws.com/tpd/logos/487cc75d000064000502f5d6/0x0.png"
+          alt="YesStyle"
+          className="h-8 w-auto mb-2"
+        />
         <span className="font-semibold text-gray-900 text-sm tracking-tight">DBA-Nexus</span>
       </div>
       <nav className="flex flex-col gap-0.5">
