@@ -9,6 +9,7 @@ export function useCurrentUser() {
     queryFn: () => getMe().then((r) => r.data),
     enabled: !!localStorage.getItem("token"),
     retry: false,
+    staleTime: 0,
   });
 }
 
