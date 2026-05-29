@@ -9,6 +9,7 @@ class DatabaseUserOut(BaseModel):
     role_purpose: str | None = None
     notes: str | None = None
     created_at: datetime | None = None
+    updated_at: datetime | None = None
 
     model_config = {"from_attributes": True}
 

@@ -62,6 +62,7 @@ export interface DatabaseUser {
   role_purpose?: string;
   notes?: string;
   created_at?: string;
+  updated_at?: string;
 }
 
 export interface EC2Server {

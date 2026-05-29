@@ -62,6 +62,7 @@ export function EC2Detail() {
         {ec2.ssh_username && (
           <div className="mt-3">
             <SecretField
+              key={ec2.updated_at ?? ec2.created_at}
               label="SSH Private Key"
               fetchSecret={() => getEC2Secret(ec2Id).then((r) => r.data.ssh_private_key)}
               canReveal={canViewSecrets}

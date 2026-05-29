@@ -72,6 +72,7 @@ export function DatabaseDetail() {
         {db.admin_username && (
           <div className="mt-3">
             <SecretField
+              key={db.updated_at ?? db.created_at}
               label="Admin Password"
               fetchSecret={() => getDatabaseSecret(dbId).then((r) => r.data.admin_password)}
               canReveal={canViewSecrets}
@@ -123,6 +124,7 @@ export function DatabaseDetail() {
                   {u.role_purpose && <p className="text-xs text-gray-400">{u.role_purpose}</p>}
                 </div>
                 <SecretField
+                  key={u.updated_at ?? u.created_at}
                   label="Password"
                   fetchSecret={() => getDbUserSecret(dbId, u.id).then((r) => r.data.password)}
                   canReveal={canViewSecrets}
