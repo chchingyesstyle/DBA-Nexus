@@ -24,8 +24,8 @@ ROLES = {
         "permissions": ["can_read_inventory", "can_write_inventory", "can_view_secrets", "can_manage_users"],
     },
     "Writer": {
-        "description": "Can create and update inventory records",
-        "permissions": ["can_read_inventory", "can_write_inventory"],
+        "description": "Can create and update inventory records and view secrets",
+        "permissions": ["can_read_inventory", "can_write_inventory", "can_view_secrets"],
     },
     "Reader": {
         "description": "Read-only access to inventory",
