@@ -11,6 +11,7 @@ class DatabaseOut(BaseModel):
     environment: str
     hostname: str | None = None
     port: int | None = None
+    tcps_port: int | None = None
     region: str | None = None
     account: str | None = None
     rds_instance_id: str | None = None
@@ -31,6 +32,7 @@ class DatabaseCreate(BaseModel):
     environment: str
     hostname: str | None = None
     port: int | None = None
+    tcps_port: int | None = None
     region: str | None = None
     account: str | None = None
     rds_instance_id: str | None = None
@@ -48,6 +50,7 @@ class DatabaseUpdate(BaseModel):
     environment: str | None = None
     hostname: str | None = None
     port: int | None = None
+    tcps_port: int | None = None
     region: str | None = None
     account: str | None = None
     rds_instance_id: str | None = None

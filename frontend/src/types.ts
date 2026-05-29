@@ -43,6 +43,7 @@ export interface Database {
   environment: string;
   hostname?: string;
   port?: number;
+  tcps_port?: number;
   region?: string;
   account?: string;
   rds_instance_id?: string;

@@ -14,6 +14,7 @@ class Database(Base):
     environment = Column(String(50), nullable=False)
     hostname = Column(String(255))
     port = Column(Integer)
+    tcps_port = Column(Integer)
     region = Column(String(100))
     account = Column(String(200))
     rds_instance_id = Column(String(200))

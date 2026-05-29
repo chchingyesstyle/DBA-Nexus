@@ -57,7 +57,8 @@ export function DatabaseDetail() {
             ["Engine", db.engine],
             ["Environment", db.environment],
             ["Hostname", db.hostname],
-            ["Port", db.port],
+            ["Port (TCP)", db.port],
+            ["Port (TCPS)", db.tcps_port],
             ["Region", db.region],
             ["Account", db.account],
             ["RDS Instance", db.rds_instance_id],
@@ -194,13 +195,13 @@ function DbUserForm({ dbId, onClose, onSaved }: { dbId: number; onClose: () => v
 function EditDatabaseForm({ db, apps, teams, onClose, onSaved }: { db: ReturnType<typeof useQuery<any>>["data"]; apps: Application[]; teams: Team[]; onClose: () => void; onSaved: () => void }) {
   const [form, setForm] = useState({
     name: db.name ?? "", engine: db.engine ?? "PostgreSQL", environment: db.environment ?? "production",
-    hostname: db.hostname ?? "", port: db.port ? String(db.port) : "", region: db.region ?? "",
+    hostname: db.hostname ?? "", port: db.port ? String(db.port) : "", tcps_port: db.tcps_port ? String(db.tcps_port) : "", region: db.region ?? "",
     account: db.account ?? "", rds_instance_id: db.rds_instance_id ?? "", admin_username: db.admin_username ?? "",
     admin_password: "", description: db.description ?? "", notes: db.notes ?? "",
     application_ids: db.applications.map((a: Application) => a.id) as number[],
     team_ids: db.teams.map((t: Team) => t.id) as number[],
   });
-  const mut = useMutation({ mutationFn: (data: typeof form) => updateDatabase(db.id, { ...data, port: data.port ? Number(data.port) : undefined }), onSuccess: onSaved });
+  const mut = useMutation({ mutationFn: (data: typeof form) => updateDatabase(db.id, { ...data, port: data.port ? Number(data.port) : undefined, tcps_port: data.tcps_port ? Number(data.tcps_port) : undefined }), onSuccess: onSaved });
   const set = (k: string, v: unknown) => setForm((f) => ({ ...f, [k]: v }));
 
   return (
@@ -208,7 +209,7 @@ function EditDatabaseForm({ db, apps, teams, onClose, onSaved }: { db: ReturnTyp
       <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg mx-4 mb-8">
         <h2 className="text-base font-semibold text-gray-900 mb-4">Edit Database</h2>
         <form onSubmit={(e) => { e.preventDefault(); mut.mutate(form); }} className="grid grid-cols-2 gap-3">
-          {[["name", "Name *", true], ["hostname", "Hostname"], ["port", "Port"], ["region", "Region"], ["account", "Account"], ["rds_instance_id", "RDS Instance ID"], ["admin_username", "Admin Username"]].map(([key, label, req]) => (
+          {[["name", "Name *", true], ["hostname", "Hostname"], ["port", "Port (TCP)"], ["tcps_port", "Port (TCPS)"], ["region", "Region"], ["account", "Account"], ["rds_instance_id", "RDS Instance ID"], ["admin_username", "Admin Username"]].map(([key, label, req]) => (
             <div key={key as string} className={key === "name" ? "col-span-2" : ""}>
               <label className="block text-xs font-medium text-gray-600 mb-1">{label as string}</label>
               <input value={(form as Record<string, unknown>)[key as string] as string} onChange={(e) => set(key as string, e.target.value)} required={!!req} className="w-full border border-gray-300 rounded px-2.5 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300" />
